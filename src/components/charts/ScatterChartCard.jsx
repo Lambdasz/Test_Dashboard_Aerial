@@ -2,20 +2,12 @@ import { ScatterChart, Scatter, XAxis, YAxis, Tooltip, CartesianGrid, Responsive
 import { ChartCard } from "@/components/kit";
 
 export default function ScatterChartCard({
-  title,
-  subtitle,
-  actions,
-  data = [],
-  xKey = "x",
-  yKey = "y",
-  zKey = "z",
-  xLabel = "x",
-  yLabel = "y",
-  fill = "#2d72d2",
-  height = 300,
+  title, subtitle, desc, actions,
+  data = [], xKey = "x", yKey = "y", zKey = "z",
+  xLabel = "x", yLabel = "y", fill = "#2d72d2", height = 300,
 }) {
   return (
-    <ChartCard title={title} subtitle={subtitle} actions={actions}>
+    <ChartCard title={title} subtitle={subtitle} desc={desc} actions={actions}>
       <ResponsiveContainer width="100%" height={height}>
         <ScatterChart>
           <CartesianGrid strokeOpacity={0.15} />

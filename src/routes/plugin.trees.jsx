@@ -30,16 +30,25 @@ function TreesPage() {
       <div className="aap-section-title">
         <div>
           <h2>Tree Detection & Counting</h2>
-          <p className="aap-muted">Crown detections with confidence filtering and manual review</p>
+          <p className="aap-muted">Pengesanan silara pokok dengan penapisan keyakinan dan semakan manual</p>
         </div>
-        <Tag minimal>{visible.length} shown</Tag>
+        <Tag minimal>{visible.length} dipaparkan</Tag>
       </div>
 
       <div className="aap-grid">
-        <div className="aap-span-3"><KpiCard label="Detections" value={TREE_DETECTIONS.length} /></div>
-        <div className="aap-span-3"><KpiCard label="Mean confidence" value={0.71} /></div>
+        <div className="aap-span-3">
+          <KpiCard label="Detections" value={TREE_DETECTIONS.length}
+            desc="Jumlah pengesanan silara pokok oleh plugin. Setiap pengesanan menyumbang kepada kiraan pokok akhir." />
+        </div>
+        <div className="aap-span-3">
+          <KpiCard label="Mean confidence" value={0.71}
+            desc="Purata keyakinan model terhadap pengesanan. Nilai rendah menandakan perlu semakan manual." />
+        </div>
         <div className="aap-span-6">
-          <ChartCard title="Confidence range">
+          <ChartCard
+            title="Confidence range"
+            desc="Penapis julat keyakinan. Pengguna boleh mengecilkan julat untuk hanya melihat pengesanan berkualiti tinggi sebelum pengiraan akhir dibuat."
+          >
             <RangeSlider min={0} max={1} stepSize={0.05} labelStepSize={0.25} value={range} onChange={setRange} />
             <Legend items={[
               { color: "#1c6e42", label: "High ≥ 0.80" },
@@ -50,10 +59,17 @@ function TreesPage() {
         </div>
 
         <div className="aap-span-6">
-          <HistogramCard title="Confidence histogram" data={hist} xKey="bin" yKey="count" />
+          <HistogramCard
+            title="Confidence histogram"
+            desc="Taburan keyakinan pengesanan. Jika banyak pengesanan di bawah 0.5, model mungkin perlu dilatih semula."
+            data={hist} xKey="bin" yKey="count"
+          />
         </div>
         <div className="aap-span-6">
-          <ChartCard title="Detections map">
+          <ChartCard
+            title="Detections map"
+            desc="Peta lokasi pengesanan pokok. Warna titik menunjukkan tahap keyakinan. Digunakan untuk mengenal pasti kluster atau kawasan bermasalah."
+          >
             <MapView
               center={MAP_CENTER} zoom={14} height={250}
               markers={visible.map((t) => ({
@@ -66,7 +82,10 @@ function TreesPage() {
         </div>
 
         <div className="aap-span-6">
-          <ChartCard title="Review queue">
+          <ChartCard
+            title="Review queue"
+            desc="Senarai semakan manual. Setiap pengesanan boleh diterima atau ditolak. Sangat penting untuk penyeliaan kualiti sebelum angka pokok diumumkan."
+          >
             {visible.slice(0, 8).map((t) => (
               <ReviewRow key={t.id}>
                 <Thumb />
@@ -75,8 +94,8 @@ function TreesPage() {
                   <div className="aap-muted">{t.plot} · h {t.height_m} m · conf {t.confidence}</div>
                 </div>
                 <div className="aap-flex" style={{ marginLeft: "auto" }}>
-                  <Button small intent="success" icon="tick" onClick={() => toast(`${t.id} accepted`, "success")} />
-                  <Button small intent="danger" icon="cross" onClick={() => toast(`${t.id} rejected`, "warning")} />
+                  <Button small intent="success" icon="tick" onClick={() => toast(`${t.id} diterima`, "success")} />
+                  <Button small intent="danger" icon="cross" onClick={() => toast(`${t.id} ditolak`, "warning")} />
                 </div>
               </ReviewRow>
             ))}
@@ -85,8 +104,8 @@ function TreesPage() {
         <div className="aap-span-6">
           <BarChartCard
             title="Trees per plot"
-            data={perPlot}
-            xKey="name"
+            desc="Bilangan pokok yang dikesan bagi setiap plot. Digunakan untuk perbandingan kepadatan pokok antara plot dan pengesanan plot yang perlu semakan lanjut."
+            data={perPlot} xKey="name"
             bars={[{ key: "trees", fill: "#1c6e42" }]}
             height={260}
           />

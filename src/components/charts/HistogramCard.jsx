@@ -2,17 +2,12 @@ import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContaine
 import { ChartCard } from "@/components/kit";
 
 export default function HistogramCard({
-  title,
-  subtitle,
-  actions,
-  data = [],
-  xKey = "bin",
-  yKey = "count",
-  fill = "#2d72d2",
-  height = 250,
+  title, subtitle, desc, actions,
+  data = [], xKey = "bin", yKey = "count",
+  fill = "#2d72d2", height = 250,
 }) {
   return (
-    <ChartCard title={title} subtitle={subtitle} actions={actions}>
+    <ChartCard title={title} subtitle={subtitle} desc={desc} actions={actions}>
       <ResponsiveContainer width="100%" height={height}>
         <BarChart data={data}>
           <CartesianGrid strokeOpacity={0.15} vertical={false} />

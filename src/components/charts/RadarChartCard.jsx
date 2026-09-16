@@ -5,16 +5,11 @@ import {
 import { ChartCard } from "@/components/kit";
 
 export default function RadarChartCard({
-  title,
-  subtitle,
-  actions,
-  data = [],
-  angleKey = "metric",
-  series = [],
-  height = 300,
+  title, subtitle, desc, actions,
+  data = [], angleKey = "metric", series = [], height = 300,
 }) {
   return (
-    <ChartCard title={title} subtitle={subtitle} actions={actions}>
+    <ChartCard title={title} subtitle={subtitle} desc={desc} actions={actions}>
       <ResponsiveContainer width="100%" height={height}>
         <RadarChart data={data}>
           <PolarGrid strokeOpacity={0.2} />

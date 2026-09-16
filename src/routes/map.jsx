@@ -26,14 +26,17 @@ function MapExplorer() {
       <div className="aap-section-title">
         <div>
           <h2>Map Explorer</h2>
-          <p className="aap-muted">{IMAGES.length} images · {PLOTS.length} plots</p>
+          <p className="aap-muted">{IMAGES.length} imej · {PLOTS.length} plot</p>
         </div>
         <Tag minimal>EPSG:4326</Tag>
       </div>
 
       <div className="aap-grid">
         <div className="aap-span-3">
-          <ChartCard title="Layers">
+          <ChartCard
+            title="Layers"
+            desc="Pengurus lapisan. Pengguna boleh menghidup/matikan lapisan imejan, sempadan plot dan AOI. Ini penting untuk mengelak kekeliruan visual semasa analisis."
+          >
             <Checkbox checked={layers.images} label="Imagery" onChange={() => setLayers({ ...layers, images: !layers.images })} />
             <Checkbox checked={layers.plots} label="Plot boundaries" onChange={() => setLayers({ ...layers, plots: !layers.plots })} />
             <Checkbox checked={layers.aoi} label="AOI" onChange={() => setLayers({ ...layers, aoi: !layers.aoi })} />
@@ -44,7 +47,10 @@ function MapExplorer() {
           </ChartCard>
         </div>
         <div className="aap-span-9">
-          <ChartCard title="Geo-referenced imagery">
+          <ChartCard
+            title="Geo-referenced imagery"
+            desc="Peta interaktif yang menunjukkan lokasi sebenar setiap imej, sempadan plot dan kawasan tumpuan (AOI). Ini adalah teras kepada semua analitik spatial dalam platform — hasil daripada semua plugin dipaparkan di atas peta ini."
+          >
             <MapView
               center={MAP_CENTER} zoom={13} height={560}
               markers={layers.images ? markers : []}

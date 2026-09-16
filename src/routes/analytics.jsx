@@ -36,19 +36,32 @@ function AnalyticsPage() {
       <div className="aap-section-title">
         <div>
           <h2>Project Analytics</h2>
-          <p className="aap-muted">Acquisition metrics and plugin usage</p>
+          <p className="aap-muted">Metrik pengambilalihan imejan dan penggunaan plugin</p>
         </div>
       </div>
 
       <div className="aap-grid">
-        <div className="aap-span-3"><KpiCard label="Total images" value={totalImages} /></div>
-        <div className="aap-span-3"><KpiCard label="Avg altitude" value={avgAlt} unit="m" /></div>
-        <div className="aap-span-3"><KpiCard label="Avg overlap" value={avgOverlap} unit="%" /></div>
-        <div className="aap-span-3"><KpiCard label="Avg GSD" value={avgGSD} unit="cm" /></div>
+        <div className="aap-span-3">
+          <KpiCard label="Total images" value={totalImages}
+            desc="Jumlah keseluruhan imej merentas semua sesi. Menjadi asas kepada beban pemprosesan yang diperlukan." />
+        </div>
+        <div className="aap-span-3">
+          <KpiCard label="Avg altitude" value={avgAlt} unit="m"
+            desc="Purata ketinggian penerbangan drone. Mempengaruhi resolusi spatial (GSD) dan liputan setiap imej." />
+        </div>
+        <div className="aap-span-3">
+          <KpiCard label="Avg overlap" value={avgOverlap} unit="%"
+            desc="Purata pertindihan antara imej. Overlap tinggi diperlukan untuk menghasilkan orthomosaic yang baik." />
+        </div>
+        <div className="aap-span-3">
+          <KpiCard label="Avg GSD" value={avgGSD} unit="cm"
+            desc="Purata Ground Sample Distance — saiz sebenar satu piksel di atas tanah. Semakin kecil, semakin terperinci analitik." />
+        </div>
 
         <div className="aap-span-8">
           <BarChartCard
             title="Images & area per site"
+            desc="Carta bar berkembar ini membandingkan bilangan imej dan keluasan mengikut tapak. Digunakan untuk mengenal pasti tapak yang paling banyak diliputi dan merancang lawatan susulan."
             data={perSite}
             bars={[
               { key: "images", fill: "#2d72d2", name: "Images" },
@@ -59,13 +72,18 @@ function AnalyticsPage() {
           />
         </div>
         <div className="aap-span-4">
-          <PieChartCard title="Plugin usage" data={pluginUse} />
+          <PieChartCard
+            title="Plugin usage"
+            desc="Pecahan penggunaan plugin dalam projek ini. Membantu mengenal pasti plugin yang paling kerap digunakan dan yang mungkin boleh dinyahaktifkan."
+            data={pluginUse}
+          />
         </div>
 
         <div className="aap-span-12">
           <div className="aap-card">
             <div className="aap-card-head"><h3 className="aap-card-title">Session table</h3></div>
             <DataTable
+              desc="Jadual ini menyenaraikan semua sesi bersama juruterbang, ketinggian, overlap dan GSD. Digunakan untuk audit teknikal dan pemilihan sesi untuk pemprosesan semula."
               columns={[
                 { key: "id", label: "Session" },
                 { key: "date", label: "Date" },

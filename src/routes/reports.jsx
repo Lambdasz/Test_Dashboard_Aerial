@@ -11,7 +11,7 @@ const SECTIONS = ["Vegetation", "Trees", "Land Cover", "Plots", "Temporal"];
 
 function ReportsPage() {
   const { project, toast } = useApp();
-  const [title, setTitle] = useState("Seasonal Canopy Report");
+  const [title, setTitle] = useState("Laporan Kanopi Bermusim");
   const [checked, setChecked] = useState(["Vegetation", "Trees", "Plots"]);
   const [from, setFrom] = useState(OBSERVATION_DATES[0]);
   const [to, setTo] = useState(OBSERVATION_DATES[OBSERVATION_DATES.length - 1]);
@@ -25,18 +25,21 @@ function ReportsPage() {
       <div className="aap-section-title">
         <div>
           <h2>Reports</h2>
-          <p className="aap-muted">Compose and preview a deliverable for {project.name}</p>
+          <p className="aap-muted">Bina dan pratonton laporan untuk {project.name}</p>
         </div>
         <Button intent="primary" icon="download" onClick={() => setOpen(true)}>Export</Button>
       </div>
 
       <div className="aap-grid">
         <div className="aap-span-4">
-          <ChartCard title="Builder">
+          <ChartCard
+            title="Builder"
+            desc="Borang pembinaan laporan. Pengguna memilih tajuk, seksyen, julat tarikh dan plot. Setiap pilihan mempengaruhi pratonton di sebelah kanan."
+          >
             <div className="aap-stack">
-              <InputGroup value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Report title" />
+              <InputGroup value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Tajuk laporan" />
               <div>
-                <div className="aap-muted">Sections</div>
+                <div className="aap-muted">Seksyen</div>
                 {SECTIONS.map((s) => (
                   <Checkbox key={s} label={s} checked={checked.includes(s)} onChange={() => toggle(s)} />
                 ))}
@@ -47,7 +50,7 @@ function ReportsPage() {
                 <HTMLSelect value={to} onChange={(e) => setTo(e.target.value)} options={OBSERVATION_DATES} />
               </div>
               <div>
-                <div className="aap-muted">Plots</div>
+                <div className="aap-muted">Plot</div>
                 {PLOTS.map((p) => (
                   <Checkbox
                     key={p.id} label={`${p.id} — ${p.name}`}
@@ -62,30 +65,30 @@ function ReportsPage() {
 
         <div className="aap-span-8">
           <div className="aap-report-preview">
-            <h1>{title || "Untitled report"}</h1>
-            <p className="aap-muted">{project.name} · {from} → {to} · {plots.length} plots</p>
-            {checked.length === 0 ? <p className="aap-muted">No sections selected.</p> : null}
-            {checked.includes("Vegetation") ? (<><h4>Vegetation</h4><p>Mean ExG 0.318; green coverage 64.2% across selected plots.</p></>) : null}
-            {checked.includes("Trees") ? (<><h4>Trees</h4><p>2,184 crowns detected, mean confidence 0.71.</p></>) : null}
-            {checked.includes("Land Cover") ? (<><h4>Land Cover</h4><p>Canopy 31%, grass 22%, bare soil 18%, water 9%.</p></>) : null}
+            <h1>{title || "Laporan tanpa tajuk"}</h1>
+            <p className="aap-muted">{project.name} · {from} → {to} · {plots.length} plot</p>
+            {checked.length === 0 ? <p className="aap-muted">Tiada seksyen dipilih.</p> : null}
+            {checked.includes("Vegetation") ? (<><h4>Vegetasi</h4><p>Purata ExG 0.318; litupan hijau 64.2% merentas plot terpilih.</p></>) : null}
+            {checked.includes("Trees") ? (<><h4>Pokok</h4><p>2,184 silara dikesan, purata keyakinan 0.71.</p></>) : null}
+            {checked.includes("Land Cover") ? (<><h4>Litupan Tanah</h4><p>Kanopi 31%, rumput 22%, tanah 18%, air 9%.</p></>) : null}
             {checked.includes("Plots") ? (
-              <><h4>Plots</h4><ul>
+              <><h4>Plot</h4><ul>
                 {PLOTS.filter((p) => plots.includes(p.id)).map((p) => (
-                  <li key={p.id}>{p.id} — {p.name}: {p.area_ha} ha, {p.trees} trees</li>
+                  <li key={p.id}>{p.id} — {p.name}: {p.area_ha} ha, {p.trees} pokok</li>
                 ))}
               </ul></>
             ) : null}
-            {checked.includes("Temporal") ? (<><h4>Temporal</h4><p>Coverage rose 12.4 points over the selected window.</p></>) : null}
+            {checked.includes("Temporal") ? (<><h4>Temporal</h4><p>Litupan meningkat 12.4 mata dalam tetingkap terpilih.</p></>) : null}
           </div>
         </div>
       </div>
 
-      <Dialog isOpen={open} onClose={() => setOpen(false)} title="Export report">
-        <DialogBody><p>Render “{title}” with {checked.length} sections for {plots.length} plots.</p></DialogBody>
+      <Dialog isOpen={open} onClose={() => setOpen(false)} title="Export laporan">
+        <DialogBody><p>Hasilkan “{title}” dengan {checked.length} seksyen untuk {plots.length} plot.</p></DialogBody>
         <DialogFooter actions={
           <>
-            <Button onClick={() => setOpen(false)}>Cancel</Button>
-            <Button intent="primary" onClick={() => { setOpen(false); toast("Report queued", "success"); }}>Generate PDF</Button>
+            <Button onClick={() => setOpen(false)}>Batal</Button>
+            <Button intent="primary" onClick={() => { setOpen(false); toast("Laporan dijadualkan", "success"); }}>Hasilkan PDF</Button>
           </>
         } />
       </Dialog>
