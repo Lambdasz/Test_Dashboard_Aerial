@@ -2,13 +2,13 @@ import { Suspense, lazy } from "react";
 import { ClientOnly } from "@tanstack/react-router";
 import { Spinner } from "@blueprintjs/core";
 
-const LeafletMap = lazy(() => import("./LeafletMap"));
+const LeafletMap = lazy(() => import("./LeafletMap.jsx"));
 
 function Fallback({ height }) {
   return (
     <div className="aap-map-fallback" style={{ height }}>
       <Spinner size={22} />
-      <span className="aap-muted">Loading basemap…</span>
+      <span className="aap-muted">Memuat basemap...</span>
     </div>
   );
 }

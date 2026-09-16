@@ -6,7 +6,7 @@ import {
 } from "@blueprintjs/core";
 import { PLUGIN_ALERTS, PLUGINS, PROJECTS } from "@/data/mock";
 import { useApp } from "@/lib/app-state";
-import Sidebar, { NAV_SECTIONS } from "./Sidebar";
+import Sidebar, { NAV_SECTIONS } from "./Sidebar.jsx";
 
 const FLAT_NAV = NAV_SECTIONS.flatMap((s) => s.items);
 
@@ -26,7 +26,7 @@ function CommandPalette({ open, onClose }) {
       <DialogBody>
         <InputGroup
           autoFocus large leftIcon="chevron-right"
-          placeholder="Jump to a page, plugin or result…"
+          placeholder="Lompat ke halaman, plugin, atau hasil..."
           value={q} onChange={(e) => setQ(e.target.value)}
         />
         <Menu className="aap-palette-menu">
@@ -35,10 +35,10 @@ function CommandPalette({ open, onClose }) {
               <MenuItem icon={r.icon} text={r.label} labelElement={<Tag minimal>{r.kind}</Tag>} tagName="div" />
             </Link>
           ))}
-          {results.length === 0 ? <MenuItem disabled text="No matches" /> : null}
+          {results.length === 0 ? <MenuItem disabled text="Nggak ada yang cocok" /> : null}
         </Menu>
         <p className="aap-muted aap-palette-hint">
-          Tip: press <code className={Classes.CODE}>⌘K</code> anywhere to open this palette.
+          Tips: pencet <code className={Classes.CODE}>Ctrl+K</code> di mana aja buat buka palette ini.
         </p>
       </DialogBody>
     </Dialog>
@@ -78,7 +78,7 @@ export function AppShell({ children }) {
             minimal placement="bottom-start"
             content={
               <Menu>
-                <MenuDivider title="Switch project" />
+                <MenuDivider title="Ganti proyek" />
                 {PROJECTS.map((p) => (
                   <MenuItem
                     key={p.id}
@@ -95,17 +95,17 @@ export function AppShell({ children }) {
         </Navbar.Group>
         <Navbar.Group align={Alignment.RIGHT}>
           <Button minimal icon="search" className="aap-search-btn" onClick={() => setPaletteOpen(true)}>
-            <span className="aap-search-label">Search…</span>
-            <Tag minimal className="aap-kbd">⌘K</Tag>
+            <span className="aap-search-label">Cari...</span>
+            <Tag minimal className="aap-kbd">Ctrl K</Tag>
           </Button>
           <Popover
             minimal placement="bottom-end"
             content={
               <div className="aap-health">
-                <div className="aap-health-head">Plugin health</div>
+                <div className="aap-health-head">Kesehatan plugin</div>
                 {PLUGIN_ALERTS.map((a) => (
                   <Callout key={a.id} intent={a.intent} title={a.title} compact className="aap-health-item">
-                    <span className="aap-muted">{a.plugin}</span> — {a.detail}
+                    <span className="aap-muted">{a.plugin}</span> - {a.detail}
                   </Callout>
                 ))}
               </div>
@@ -121,10 +121,10 @@ export function AppShell({ children }) {
             minimal placement="bottom-end"
             content={
               <Menu>
-                <MenuDivider title="M. Okonkwo · Analyst" />
-                <MenuItem icon="user" text="Profile" />
-                <MenuItem icon="cog" text="Preferences" />
-                <MenuItem icon="log-out" text="Sign out" />
+                <MenuDivider title="M. Okonkwo - Analyst" />
+                <MenuItem icon="user" text="Profil" />
+                <MenuItem icon="cog" text="Preferensi" />
+                <MenuItem icon="log-out" text="Keluar" />
               </Menu>
             }
           >

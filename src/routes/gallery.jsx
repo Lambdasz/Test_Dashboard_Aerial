@@ -4,7 +4,7 @@ import {
   KpiCard, ChartCard, DataTable, FilterBar, Gauge, BeforeAfter, Legend,
   EmptyState, Skeleton, HeatCell, Matrix, LogViewer, Thumb, ReviewRow,
 } from "@/components/kit";
-import { PieChartCard, BarChartCard, LineChartCard, StackedBarChartCard, HistogramCard, RadarChartCard, ScatterChartCard, HeatmapGrid } from "@/components/charts";
+import { PieChartCard, BarChartCard, LineChartCard, StackedBarChartCard, HistogramCard, RadarChartCard, ScatterChartCard, HeatmapGrid } from "@/components/charts/index.js";
 import { PLOTS, LAND_CLASSES, PLUGIN_LOG } from "@/data/mock";
 
 export const Route = createFileRoute("/gallery")({ component: GalleryPage });

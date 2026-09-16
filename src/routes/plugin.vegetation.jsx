@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 import { Button, SegmentedControl, Slider } from "@blueprintjs/core";
 import { ChartCard, DataTable, Gauge, BeforeAfter, Legend, KpiCard } from "@/components/kit";
-import { HistogramCard } from "@/components/charts";
+import { HistogramCard } from "@/components/charts/index.js";
 import { PLOTS, LAND_CLASSES } from "@/data/mock";
 import { useApp } from "@/lib/app-state";
 

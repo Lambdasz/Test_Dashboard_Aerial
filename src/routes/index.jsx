@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { KpiCard, DataTable } from "@/components/kit";
-import { BarChartCard, LineChartCard, PieChartCard } from "@/components/charts";
+import { BarChartCard, LineChartCard, PieChartCard } from "@/components/charts/index.js";
 import { FLIGHT_SESSIONS, IMAGES, PLOTS, PLUGINS, OBSERVATION_DATES } from "@/data/mock";
 
 export const Route = createFileRoute("/")({ component: Dashboard });

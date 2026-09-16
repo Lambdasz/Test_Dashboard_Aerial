@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Tag } from "@blueprintjs/core";
 import { KpiCard, ChartCard, DataTable } from "@/components/kit";
-import { RadarChartCard } from "@/components/charts";
+import { RadarChartCard } from "@/components/charts/index.js";
 import { PLOTS } from "@/data/mock";
 
 export const Route = createFileRoute("/plots")({ component: PlotsPage });
