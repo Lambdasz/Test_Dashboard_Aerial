@@ -31,7 +31,7 @@ function GalleryPage() {
       <div className="aap-section-title">
         <div>
           <h2>Component Gallery</h2>
-          <p className="aap-muted">Setiap primitif yang boleh diguna semula, dipaparkan secara berasingan</p>
+          <p className="aap-muted">Semua primitif yang bisa dipake ulang, ditampilin satu-satu</p>
         </div>
       </div>
 
@@ -39,30 +39,30 @@ function GalleryPage() {
 
       <div className="aap-grid">
         <div className="aap-span-3">
-          <KpiCard label="KPI card" value={2184} unit="pokok"
-            desc="Kad KPI standard: label, nilai, unit, delta dan sparkline pilihan. Digunakan di seluruh platform." />
+          <KpiCard label="KPI card" value={2184} unit="pohon"
+            desc="Kartu KPI standar: label, nilai, unit, delta, sama sparkline opsional. Dipake di seluruh platform." />
         </div>
         <div className="aap-span-3">
-          <ChartCard title="Gauge" desc="Tolok bulat untuk metrik 0–100 seperti litupan vegetasi.">
+          <ChartCard title="Gauge" desc="Tolok bulat buat metrik 0-100 kayak tutupan vegetasi.">
             <Gauge value={64} max={100} unit="%" label="Coverage" />
           </ChartCard>
         </div>
         <div className="aap-span-6">
-          <ChartCard title="Chart card" subtitle="Pembalut dengan tajuk, subtajuk, aksi dan desc"
+          <ChartCard title="Chart card" subtitle="Wrapper dengan judul, subtitle, aksi, sama desc"
             actions={<Button small icon="more" />}
-            desc="Pembalut universal untuk mana-mana carta atau kandungan. Menyediakan tajuk, aksi dan slot deskripsi.">
-            <p className="aap-muted">Kandungan bebas.</p>
+            desc="Wrapper universal buat chart atau konten apa aja. Nyediain judul, aksi, sama slot deskripsi.">
+            <p className="aap-muted">Konten bebas.</p>
           </ChartCard>
         </div>
 
-        <div className="aap-span-4"><PieChartCard title="PieChartCard" data={samplePie} desc="Carta pai/donut untuk pecahan kategori." /></div>
-        <div className="aap-span-8"><BarChartCard title="BarChartCard" data={sampleBars} bars={[{ key: "v", fill: "#2d72d2" }]} desc="Carta bar untuk perbandingan kategori." /></div>
-        <div className="aap-span-6"><LineChartCard title="LineChartCard" data={sampleLine} xKey="d" lines={[{ key: "v", stroke: "#1c6e42" }]} showDots desc="Carta garis untuk trend masa." /></div>
-        <div className="aap-span-6"><HistogramCard title="HistogramCard" data={sampleHist} desc="Histogram untuk taburan kekerapan." /></div>
+        <div className="aap-span-4"><PieChartCard title="PieChartCard" data={samplePie} desc="Pie/donut chart buat pembagian kategori." /></div>
+        <div className="aap-span-8"><BarChartCard title="BarChartCard" data={sampleBars} bars={[{ key: "v", fill: "#2d72d2" }]} desc="Bar chart buat perbandingan antar kategori." /></div>
+        <div className="aap-span-6"><LineChartCard title="LineChartCard" data={sampleLine} xKey="d" lines={[{ key: "v", stroke: "#1c6e42" }]} showDots desc="Line chart buat tren waktu." /></div>
+        <div className="aap-span-6"><HistogramCard title="HistogramCard" data={sampleHist} desc="Histogram buat distribusi frekuensi." /></div>
         <div className="aap-span-6">
           <StackedBarChartCard
             title="StackedBarChartCard"
-            desc="Carta bar bertindan untuk komposisi kategori."
+            desc="Stacked bar chart buat komposisi kategori."
             data={[{ name: "P1", a: 30, b: 20, c: 50 }, { name: "P2", a: 45, b: 25, c: 30 }]}
             stacks={[{ key: "a", fill: "#1c6e42" }, { key: "b", fill: "#946638" }, { key: "c", fill: "#2d72d2" }]}
           />
@@ -70,7 +70,7 @@ function GalleryPage() {
         <div className="aap-span-6">
           <RadarChartCard
             title="RadarChartCard"
-            desc="Carta radar untuk perbandingan pelbagai metrik."
+            desc="Radar chart buat perbandingan multi-metrik."
             data={sampleRadar}
             series={[{ key: "a", stroke: "#2d72d2" }, { key: "b", stroke: "#c87619" }]}
           />
@@ -78,18 +78,18 @@ function GalleryPage() {
         <div className="aap-span-6">
           <ScatterChartCard
             title="ScatterChartCard"
-            desc="Carta sebar untuk korelasi antara dua pemboleh ubah."
+            desc="Scatter chart buat korelasi antar dua variabel."
             data={sampleBars.map((b, i) => ({ x: i * 10 + 5, y: b.v, z: b.v * 2 }))}
             xLabel="x" yLabel="v"
           />
         </div>
         <div className="aap-span-6">
           <HeatmapGrid title="HeatmapGrid" values={[8, 22, 37, 55, 71, 94, 12, 45, 60, 33, 78, 90]} columns={6}
-            desc="Grid haba untuk kepadatan atau magnitud perubahan." />
+            desc="Heatmap grid buat kepadatan atau besarnya perubahan." />
         </div>
 
         <div className="aap-span-6">
-          <ChartCard title="Data table" desc="Jadual data dengan penomboran halaman.">
+          <ChartCard title="Data table" desc="Tabel data lengkap sama pagination.">
             <DataTable
               columns={[
                 { key: "id", label: "Plot" },
@@ -101,33 +101,33 @@ function GalleryPage() {
           </ChartCard>
         </div>
         <div className="aap-span-6">
-          <ChartCard title="Before / after" desc="Slider pembanding untuk dua keadaan imejan.">
+          <ChartCard title="Before / after" desc="Slider pembanding buat dua kondisi imej.">
             <BeforeAfter height={220} before={<div className="aap-fake-rgb" />} after={<div className="aap-fake-mask" />} leftLabel="RGB" rightLabel="Mask" />
           </ChartCard>
         </div>
 
-        <div className="aap-span-4"><ChartCard title="Legend" desc="Petunjuk warna dan label."><Legend items={LAND_CLASSES.map((c) => ({ color: c.color, label: c.label }))} /></ChartCard></div>
-        <div className="aap-span-4"><ChartCard title="Empty state" desc="Paparan apabila tiada data."><EmptyState icon="search" title="Tiada hasil" description="Laraskan penapis." /></ChartCard></div>
-        <div className="aap-span-4"><ChartCard title="Skeleton" desc="Placeholder semasa memuat data."><Skeleton lines={4} /></ChartCard></div>
+        <div className="aap-span-4"><ChartCard title="Legend" desc="Legenda warna sama label."><Legend items={LAND_CLASSES.map((c) => ({ color: c.color, label: c.label }))} /></ChartCard></div>
+        <div className="aap-span-4"><ChartCard title="Empty state" desc="Tampilan pas nggak ada datanya."><EmptyState icon="search" title="Belum ada hasil" description="Coba atur ulang filternya." /></ChartCard></div>
+        <div className="aap-span-4"><ChartCard title="Skeleton" desc="Placeholder pas lagi loading data."><Skeleton lines={4} /></ChartCard></div>
 
         <div className="aap-span-4">
-          <ChartCard title="Heat cells" desc="Sel haba individu.">
+          <ChartCard title="Heat cells" desc="Sel heatmap satuan.">
             <div style={{ display: "grid", gridTemplateColumns: "repeat(6, 1fr)", gap: 6 }}>
               {[8, 22, 37, 55, 71, 94].map((v) => <HeatCell key={v} value={v} max={100} />)}
             </div>
           </ChartCard>
         </div>
         <div className="aap-span-4">
-          <ChartCard title="Matrix" desc="Matriks peralihan atau korelasi.">
+          <ChartCard title="Matrix" desc="Matriks transisi atau korelasi.">
             <Matrix rows={["Veg", "Soil", "Water"]} columns={["Veg", "Soil", "Water"]} values={[[82, 12, 6], [18, 74, 8], [4, 9, 87]]} />
           </ChartCard>
         </div>
         <div className="aap-span-4">
-          <ChartCard title="Log viewer" desc="Paparan log berwarna mengikut tahap."><LogViewer entries={PLUGIN_LOG} /></ChartCard>
+          <ChartCard title="Log viewer" desc="Log viewer berwarna sesuai levelnya."><LogViewer entries={PLUGIN_LOG} /></ChartCard>
         </div>
 
         <div className="aap-span-6">
-          <ChartCard title="Thumbnail & review row" desc="Baris semakan untuk terima/tolak pengesanan.">
+          <ChartCard title="Thumbnail & review row" desc="Baris review buat terima/tolak deteksi.">
             <ReviewRow>
               <Thumb />
               <div>
@@ -142,7 +142,7 @@ function GalleryPage() {
           </ChartCard>
         </div>
         <div className="aap-span-6">
-          <ChartCard title="Fake RGB / mask tiles" desc="Pratonton palsu RGB dan topeng untuk mockup.">
+          <ChartCard title="Fake RGB / mask tiles" desc="Preview palsu RGB sama topengnya buat mockup.">
             <div className="aap-tiles-row">
               <div style={{ width: 180, height: 120 }}><div className="aap-fake-rgb" /></div>
               <div style={{ width: 180, height: 120 }}><div className="aap-fake-mask" /></div>

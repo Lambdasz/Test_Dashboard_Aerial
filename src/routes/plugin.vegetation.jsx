@@ -38,24 +38,24 @@ function VegetationPage() {
       <div className="aap-section-title">
         <div>
           <h2>RGB Vegetation Detection</h2>
-          <p className="aap-muted">{index} mask pada threshold {threshold.toFixed(2)}</p>
+          <p className="aap-muted">{index} mask di threshold {threshold.toFixed(2)}</p>
         </div>
-        <Button icon="refresh" onClick={() => toast("Recomputed vegetation mask", "success")}>Recompute</Button>
+        <Button icon="refresh" onClick={() => toast("Topeng vegetasi udah dihitung ulang", "success")}>Hitung ulang</Button>
       </div>
 
       <div className="aap-grid">
         <div className="aap-span-3">
           <KpiCard label="Green coverage" value={coverage} unit="%"
-            desc="Peratus litupan vegetasi yang dikesan pada threshold semasa. Nilai ini berubah secara langsung apabila pengguna melaraskan slider." />
+            desc="Persen tutupan vegetasi yang kedeteksi di threshold sekarang. Angka ini berubah langsung tiap kali user geser slider-nya." />
         </div>
         <div className="aap-span-3">
           <KpiCard label="Mean index" value={0.318}
-            desc="Purata nilai indeks vegetasi (contoh ExG) bagi seluruh imejan. Bacaan tinggi menandakan lebih banyak piksel hijau." />
+            desc="Rata-rata nilai indeks vegetasi (contohnya ExG) buat seluruh imej. Kalau bacaannya tinggi, berarti piksel hijaunya banyak." />
         </div>
         <div className="aap-span-6">
           <ChartCard
             title="Index & threshold"
-            desc="Panel kawalan untuk memilih indeks (ExG / ExR / VARI) dan melaraskan threshold pengesanan. Perubahan terus mempengaruhi topeng vegetasi dan metrik di bawah."
+            desc="Panel kontrol buat milih indeks (ExG / ExR / VARI) sama ngatur threshold deteksi. Tiap perubahan langsung ngaruh ke topeng vegetasi dan metrik di bawahnya."
           >
             <div className="aap-stack">
               <SegmentedControl
@@ -70,8 +70,8 @@ function VegetationPage() {
         <div className="aap-span-8">
           <ChartCard
             title="RGB vs vegetation mask"
-            subtitle="Tarik untuk bandingkan"
-            desc="Pembanding sisi-ke-sisi antara imejan RGB asal dan topeng vegetasi yang dijana. Digunakan untuk pengesahan visual bahawa plugin mengesan vegetasi dengan tepat."
+            subtitle="Geser buat bandingin"
+            desc="Pembanding side-by-side antara imej RGB asli sama topeng vegetasi yang di-generate. Dipake buat verifikasi visual kalau plugin-nya beneran deteksi vegetasi dengan tepat."
           >
             <BeforeAfter
               height={320}
@@ -84,7 +84,7 @@ function VegetationPage() {
         <div className="aap-span-4">
           <ChartCard
             title="Coverage gauge"
-            desc="Tolok bulat yang memaparkan peratus litupan vegetasi secara pantas. Berguna semasa taklimat dengan pemegang taruh."
+            desc="Tolok bulat yang nampilin persen tutupan vegetasi secara cepet. Enak dipake pas lagi presentasi ke stakeholder."
           >
             <Gauge value={coverage} max={100} unit="%" label="Vegetated area" />
             <Legend items={LAND_CLASSES.slice(0, 3).map((c) => ({ color: c.color, label: c.label }))} />
@@ -94,7 +94,7 @@ function VegetationPage() {
         <div className="aap-span-6">
           <HistogramCard
             title="Green-pixel histogram"
-            desc="Taburan bilangan piksel hijau mengikut julat nilai indeks. Digunakan untuk memilih threshold optimum — puncak histogram menunjukkan nilai indeks yang dominan."
+            desc="Distribusi jumlah piksel hijau per rentang nilai indeks. Dipake buat milih threshold paling optimal, puncak histogramnya nunjukin nilai indeks yang dominan."
             data={histogram} xKey="bin" yKey="pixels" fill="#1c6e42"
           />
         </div>
@@ -102,7 +102,7 @@ function VegetationPage() {
           <div className="aap-card">
             <div className="aap-card-head"><h3 className="aap-card-title">Mask statistics per plot</h3></div>
             <DataTable
-              desc="Statistik topeng vegetasi bagi setiap plot: peratus vegetasi, tanah, kanopi dan vigor. Digunakan untuk perbandingan antara plot selepas pengesanan."
+              desc="Statistik topeng vegetasi per plot: persen vegetasi, tanah, kanopi, sama vigor. Dipake buat bandingin antar plot setelah deteksi selesai."
               columns={[
                 { key: "id", label: "Plot" }, { key: "name", label: "Name" },
                 { key: "veg", label: "Veg", numeric: true }, { key: "soil", label: "Soil", numeric: true },

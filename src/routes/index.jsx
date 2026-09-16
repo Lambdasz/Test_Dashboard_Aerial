@@ -32,49 +32,49 @@ function Dashboard() {
       <div className="aap-section-title">
         <div>
           <h2>Dashboard</h2>
-          <p className="aap-muted">Ringkasan umum projek: imejan, plugin dan analitik</p>
+          <p className="aap-muted">Ringkasan gede buat seluruh proyek: imej, plugin, sama hasil analitik</p>
         </div>
       </div>
 
       <div className="aap-grid">
         <div className="aap-span-3">
           <KpiCard label="Images" value={totalImages}
-            desc="Jumlah keseluruhan imejan RGB yang telah diimport ke dalam projek ini. Nilai ini menjadi asas kepada semua analitik." />
+            desc="Total semua imej RGB yang udah masuk ke proyek ini. Angka ini jadi pondasi buat semua analitik yang bakal jalan." />
         </div>
         <div className="aap-span-3">
           <KpiCard label="Flight sessions" value={FLIGHT_SESSIONS.length}
-            desc="Bilangan sesi penerbangan drone. Setiap sesi mewakili satu misi pengumpulan imejan pada tarikh dan lokasi tertentu." />
+            desc="Berapa banyak sesi terbang drone yang udah dilakuin. Tiap sesi itu satu misi pengambilan imej di tanggal dan lokasi tertentu." />
         </div>
         <div className="aap-span-3">
           <KpiCard label="Area covered" value={totalArea} unit="ha"
-            desc="Jumlah keluasan tanah yang diliputi oleh semua sesi penerbangan, dalam hektar. Berguna untuk menganggarkan skop liputan projek." />
+            desc="Total luas tanah yang kecover semua sesi terbang, dalam hektar. Berguna buat ngira-ngira seberapa gede cakupan proyeknya." />
         </div>
         <div className="aap-span-3">
           <KpiCard label="Plugins" value={PLUGINS.filter((p) => p.enabled).length} unit={`of ${PLUGINS.length}`}
-            desc="Bilangan plugin analitik yang aktif berbanding jumlah yang dipasang. Plugin yang tidak aktif tidak akan menyumbang kepada hasil analitik." />
+            desc="Jumlah plugin analitik yang aktif versus total yang kepasang. Plugin yang lagi mati nggak bakal nyumbang hasil ke dashboard." />
         </div>
 
         <div className="aap-span-3">
           <KpiCard label="Avg vegetation" value={avgVeg} unit="%"
-            desc="Purata peratus litupan vegetasi merentas semua plot. Diperoleh daripada plugin RGB Vegetation Detection." />
+            desc="Rata-rata persen tutupan vegetasi di semua plot. Didapat dari plugin RGB Vegetation Detection." />
         </div>
         <div className="aap-span-3">
           <KpiCard label="Trees detected" value={totalTrees}
-            desc="Jumlah pokok yang dikesan oleh plugin Tree Detection & Counting merentas semua plot." />
+            desc="Total pohon yang kedeteksi plugin Tree Detection & Counting di semua plot." />
         </div>
         <div className="aap-span-3">
           <KpiCard label="Plots" value={PLOTS.length}
-            desc="Bilangan plot (petak kajian) yang ditakrifkan dalam projek. Setiap plot menjadi unit analisis untuk perbandingan." />
+            desc="Jumlah plot (petak kajian) yang didefinisiin di proyek ini. Tiap plot nanti jadi unit buat perbandingan antar wilayah." />
         </div>
         <div className="aap-span-3">
           <KpiCard label="Observations" value={OBSERVATION_DATES.length}
-            desc="Bilangan tarikh pemerhatian yang tersedia. Semakin banyak tarikh, semakin kaya analisis perubahan temporal." />
+            desc="Berapa banyak tanggal pengamatan yang tersedia. Makin banyak tanggal, makin kaya analisis perubahan waktunya." />
         </div>
 
         <div className="aap-span-8">
           <BarChartCard
             title="Images per flight session"
-            desc="Carta bar ini menunjukkan bilangan imej yang diambil dalam setiap sesi penerbangan. Digunakan untuk mengenal pasti sesi yang produktif atau sesi yang mungkin gagal (imej terlalu sedikit), serta untuk merancang keperluan storan dan pemprosesan."
+            desc="Bar chart ini nunjukin berapa imej yang diambil di tiap sesi terbang. Dipake buat nandain sesi yang produktif atau sesi yang mungkin gagal (imejnya dikit banget), sekalian buat ngira-ngira kebutuhan penyimpanan dan pemrosesan."
             data={perSession}
             xKey="name"
             bars={[{ key: "images", fill: "#2d72d2" }]}
@@ -83,7 +83,7 @@ function Dashboard() {
         <div className="aap-span-4">
           <PieChartCard
             title="Image quality"
-            desc="Carta pai ini memaparkan pecahan kualiti imej: Good (baik), Fair (sederhana) dan Poor (buruk). Membantu pengguna memutuskan sama ada perlu menapis atau mengambil semula imej sebelum analitik dijalankan."
+            desc="Pie chart ini nampilin pembagian kualitas imej: Good (bagus), Fair (lumayan), Poor (jelek). Bantu user buat mutusin perlu nggak nyaring atau ambil ulang imej sebelum analitik dijalanin."
             data={quality}
           />
         </div>
@@ -91,7 +91,7 @@ function Dashboard() {
         <div className="aap-span-12">
           <LineChartCard
             title="Acquisition timeline"
-            desc="Carta garis ini menunjukkan jumlah imejan mengikut tarikh pemerhatian. Digunakan untuk memantau kesinambungan pengumpulan data sepanjang musim dan mengesan jurang (gap) dalam siri temporal."
+            desc="Line chart ini nunjukin jumlah imej per tanggal pengamatan. Dipake buat mantau kelangsungan pengumpulan data sepanjang musim dan ngeh deteksi kalau ada lubang (gap) di seri waktunya."
             data={timeline}
             lines={[{ key: "images", stroke: "#1c6e42" }]}
             showDots
@@ -105,7 +105,7 @@ function Dashboard() {
               <h3 className="aap-card-title">Dataset summary</h3>
             </div>
             <DataTable
-              desc="Jadual ringkasan ini menyenaraikan setiap sesi penerbangan bersama bilangan imej, keluasan dan peratus kualiti. Digunakan sebagai rujukan pantas apabila memilih sesi untuk analitik lanjutan."
+              desc="Tabel ringkasan ini nge-list tiap sesi terbang bareng jumlah imej, luas, sama persen kualitasnya. Kepake buat rujukan cepet pas mau milih sesi buat analitik lanjutan."
               columns={[
                 { key: "id", label: "Session" },
                 { key: "date", label: "Date" },

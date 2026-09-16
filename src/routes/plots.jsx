@@ -32,25 +32,33 @@ function PlotsPage() {
       <div className="aap-section-title">
         <div>
           <h2>Plots</h2>
-          <p className="aap-muted">Geometri, komposisi dan kedudukan {PLOTS.length} plot terurus</p>
+          <p className="aap-muted">Geometri, komposisi, sama ranking {PLOTS.length} plot terkelola</p>
         </div>
       </div>
 
       <div className="aap-grid">
-        <div className="aap-span-3"><KpiCard label="Total area" value={area} unit="ha"
-          desc="Jumlah keluasan semua plot. Asas kepada pengiraan hasil dan perancangan operasi." /></div>
-        <div className="aap-span-3"><KpiCard label="Total perimeter" value={perim} unit="m"
-          desc="Jumlah perimeter semua plot. Berguna untuk merancang keperluan pagar atau pemantauan sempadan." /></div>
-        <div className="aap-span-3"><KpiCard label="Plots" value={PLOTS.length}
-          desc="Bilangan plot terurus dalam projek." /></div>
-        <div className="aap-span-3"><KpiCard label="Trees" value={PLOTS.reduce((a, p) => a + p.trees, 0)}
-          desc="Jumlah pokok merentas semua plot. Diperoleh daripada plugin Tree Detection." /></div>
+        <div className="aap-span-3">
+          <KpiCard label="Total area" value={area} unit="ha"
+            desc="Total luas semua plot. Ini jadi dasar buat ngitung hasil dan ngerencanain operasionalnya." />
+        </div>
+        <div className="aap-span-3">
+          <KpiCard label="Total perimeter" value={perim} unit="m"
+            desc="Total keliling semua plot. Berguna buat ngerencanain kebutuhan pagar atau pemantauan batas." />
+        </div>
+        <div className="aap-span-3">
+          <KpiCard label="Plots" value={PLOTS.length}
+            desc="Jumlah plot terkelola di dalam proyek." />
+        </div>
+        <div className="aap-span-3">
+          <KpiCard label="Trees" value={PLOTS.reduce((a, p) => a + p.trees, 0)}
+            desc="Total pohon di semua plot. Didapat dari plugin Tree Detection." />
+        </div>
 
         <div className="aap-span-8">
           <div className="aap-card">
             <div className="aap-card-head"><h3 className="aap-card-title">Plot register</h3></div>
             <DataTable
-              desc="Daftar lengkap semua plot: nama, jenis tanaman, keluasan, perimeter, pokok dan peratus kanopi. Rujukan utama untuk pengurusan plot."
+              desc="Daftar lengkap semua plot: nama, jenis tanaman, luas, keliling, jumlah pohon, sama persen kanopinya. Ini rujukan utama buat manajemen plot."
               columns={[
                 { key: "id", label: "Plot" }, { key: "name", label: "Name" }, { key: "crop", label: "Crop" },
                 { key: "area_ha", label: "Area (ha)", numeric: true },
@@ -65,12 +73,12 @@ function PlotsPage() {
         <div className="aap-span-4">
           <ChartCard
             title="Ranking by vegetation"
-            desc="Kedudukan plot mengikut peratus vegetasi. Membantu mengenal pasti plot terbaik dan plot yang memerlukan intervensi."
+            desc="Ranking plot berdasarkan persen vegetasinya. Bantu nandain plot terbaik sama plot yang butuh intervensi."
           >
             <div className="aap-list-scroll">
               {ranked.map((p, i) => (
                 <div key={p.id} className={`aap-list-item ${i === 0 ? "is-active" : ""}`}>
-                  <span className="aap-mono">{i + 1}. {p.id}</span> — {p.name}
+                  <span className="aap-mono">{i + 1}. {p.id}</span> - {p.name}
                   <span className="aap-muted"> {p.veg_pct}%</span>
                 </div>
               ))}
@@ -81,8 +89,8 @@ function PlotsPage() {
         <div className="aap-span-6">
           <RadarChartCard
             title="Multi-plot profile"
-            subtitle="Dinormalkan 0–100"
-            desc="Carta radar yang membandingkan empat plot teratas merentas empat metrik: kanopi, vigor, bilangan pokok dan keluasan. Setiap paksi mewakili satu metrik; bentuk yang lebih luas menandakan prestasi keseluruhan yang lebih baik."
+            subtitle="Dinormalisasi 0-100"
+            desc="Radar chart yang bandingin empat plot teratas di empat metrik: kanopi, vigor, jumlah pohon, sama luas. Tiap sumbu mewakili satu metrik, bentuk yang makin lebar berarti performanya makin bagus secara keseluruhan."
             data={radar}
             angleKey="metric"
             series={PLOTS.slice(0, 4).map((p, i) => ({ key: p.id, stroke: colors[i] }))}
@@ -91,7 +99,7 @@ function PlotsPage() {
         <div className="aap-span-6">
           <ChartCard
             title="Plot summary cards"
-            desc="Kad ringkasan pantas untuk setiap plot. Sesuai untuk paparan taklimat dan semakan pantas."
+            desc="Kartu ringkasan cepet buat tiap plot. Cocok buat tampilan pas briefing atau review kilat."
           >
             <div className="aap-tiles-row">
               {PLOTS.slice(0, 4).map((p) => (
